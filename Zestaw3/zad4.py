@@ -1,28 +1,11 @@
-from pisemne import dodawanie, mnozenie
-
-def euler():
-    e = 1
-    s = 1
-    fact = 2
-    while s > 0:
-        e += s
-        s /= fact
-        fact += 1
+def count_e(n):
+    eps = 0.1 ** n
+    i, e, fact, check_e = 2, 1, 1, 0
+    while abs(check_e-e) > eps:
+        check_e = e
+        e += 1/fact
+        fact *= i
+        i += 1
     return e
 
-
-def accurate_euler(x):
-    e = [0 for _ in range(x+1)]
-    s = [0 for _ in range(x+1)]
-    s[0] = 1
-    fact = 1
-    while True:
-        s = mnozenie(s,fact)
-        break
-        # xd
-
-
-
-
-
-
+print(count_e(100))
