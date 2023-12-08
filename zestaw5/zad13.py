@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def zad13():
 
     def rec(n,res,j=1):
@@ -12,3 +13,13 @@ def zad13():
     rec(4,"")
 
 zad13()
+=======
+def rec(x, result="", j=1):
+    if x == 0:
+        print(result[:-1])
+        return
+    for i in range(j,x+1):
+        rec(x-i,result+str(i)+"+",i)
+
+rec(10)
+>>>>>>> wdi/master
