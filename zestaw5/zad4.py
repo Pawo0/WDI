@@ -24,7 +24,7 @@ def zad4(T):
     return rec()
 
 
-l = 9
+l = 5
 tab = [[0 for _ in range(l)] for _ in range(l)]
 zad4(tab)
 for row in tab:
