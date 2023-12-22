@@ -10,26 +10,49 @@ def nwd(a,b):
     return nwd(b,a%b)
 
 
-def l_tower(t, w=0, k=0, i=0, mov=0, last=""):
-    if w == k == len(t)-1:
-        return mov
-    if i > len(t):
-        return False
-    if 0 <= i <= len(t) and i != k and relatively_prime(t[w][i], t[w][k]) and last == "w":
-        return l_tower(t, w, i, 0, mov + 1, last="k")
-    elif 0 <= i <= len(t) and i != w and relatively_prime(t[i][k], t[w][k]) and last == "k":
-        return l_tower(t, i, k, 0, mov + 1, last="w")
-    elif last == "":
-        return l_tower(t,w,k,i,mov,"w") or l_tower(t,w,k,i,mov,"k")
-    return l_tower(t,w,k,i+1,mov,last)
+def l_tower(t,w=0,k=0,mv=0):
+    n = len(t)
+    if w == k == n-1:
+        return mv
+    for i in range(k+1,n):
+        if relatively_prime(t[w][k],t[w][i]):
+            return l_tower(t,w,i,mv+1)
+    for i in range(w+1,n):
+        if relatively_prime(t[w][k], t[i][k]):
+            return l_tower(t,i,k,mv+1)
+    return -1
 
 
-t = [[2,6,6,3,6,6],
+def r_tower(t,w,k,mv=0):
+    n = len(t)
+    if w == n-1 and k == 0:
+        return mv
+    for i in range(k -1, -1,-1):
+        if relatively_prime(t[w][k], t[w][i]):
+            return r_tower(t, w, i, mv + 1)
+    for i in range(w +1, n):
+        if relatively_prime(t[w][k], t[i][k]):
+            return r_tower(t, i, k, mv + 1)
+    return float('inf')
+
+def race(t):
+    n = len(t)
+    speed_r1 = l_tower(t,0,0)
+    speed_r2 = r_tower(t,0,n-1)
+    if speed_r1 < speed_r2:
+        return 1
+    elif speed_r1 > speed_r2:
+        return 2
+    else:
+        return 0
+
+
+t = [[2,6,6,3,6,3],
      [6,6,6,6,6,6],
-     [6,3,6,2,6,6],
+     [6,3,6,2,3,6],
      [6,6,6,6,6,6],
      [6,6,6,6,6,6],
-     [6,2,6,6,6,3],
+     [3,2,6,6,2,3],
      ]
 
-print(l_tower(t))
+print(race(t))
