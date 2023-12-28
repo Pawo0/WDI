@@ -48,3 +48,25 @@ t = [[11,1],
      [51,21]]
 
 print(zad18(t2))
+
+
+'''
+def valid_move(fr, to):
+    last = fr % 10
+    first = to // 10**int(log10(to))
+    return last < first
+
+
+def zad18(T,w=0,k=0):
+
+    def rek(w,k):
+        if w == k == len(T) - 1:
+            return True
+        moves = [(1,1),(1,0),(0,1)]
+        flag = False
+        for x, y in moves:
+            if w+x < len(T) and k+y < len(T) and valid_move(T[w][k],T[w+x][k+y]):
+                flag = flag or rek(w+x,k+y)
+        return flag
+    return rek(w,k)
+'''
