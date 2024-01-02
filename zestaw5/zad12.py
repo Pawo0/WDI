@@ -1,6 +1,7 @@
 def zad11(t,do_ilu):
     n = len(t)
     result = 0
+
     def rek(i=0,ilo=1,nk=""):
         nonlocal result
         if ilo >= do_ilu or i == n:
@@ -14,5 +15,9 @@ def zad11(t,do_ilu):
     return result
 
 
-t = [2,7,3,2,4]
-print(zad11(t,12))
+if __name__ == "__main__":
+    t = [2,7,3,2,4]
+    print(zad11(t,12))
+
+
+
