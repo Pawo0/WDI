@@ -14,6 +14,20 @@ def is_prime(n):
     return 1
 
 
+def rek2(t,ind=1):
+    if ind == 9:
+        print(t)
+        return True
+    i = 1
+    while i < 10:
+        if abs(t[ind-1]-i) >= 2 and not is_prime(t[ind-1]) == is_prime(i) == 1 and i not in t:
+            t[ind] = i
+            rek2(t,ind+1)
+            t[ind] = 0
+        i+=1
+    return False
+
+
 def rek(t, i,used=[], fr=1, last=0):
     if i == 9:
         print(t)
@@ -30,6 +44,9 @@ def rek(t, i,used=[], fr=1, last=0):
             rek(t, i,used, fr + 1, last)
     return 0
 
+if __name__ == "__main__":
+    t = [0 for i in range(9)]
+    t[0] = 1
+    # rek(t,0)
 
-t = [0 for i in range(9)]
-rek(t,0)
+    rek2(t,)
