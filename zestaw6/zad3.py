@@ -1,6 +1,6 @@
 from lista import Node, print_list
 
-
+# to nie dziala
 def scal(p,q):
     p = Node(None,p)
     q = Node(None,q)
