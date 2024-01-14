@@ -34,6 +34,17 @@ def init_rand(n=10,x=1,y=100):
     return a
 
 
+def init_number(n):
+    a = Node(n%10)
+    n //= 10
+    while n != 0:
+        digit = n%10
+        b = Node(digit,a)
+        a = b
+        n //= 10
+    return a
+
+
 def add_to_end_list(p,what):
     p = Node(None,p) # guard
     start = p.next
