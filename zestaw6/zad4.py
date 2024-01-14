@@ -1,4 +1,4 @@
-from lista import Node, print_list, init
+from lista import Node, print_list, init_natural
 
 
 def list_revers(p):
@@ -22,11 +22,12 @@ def rek_list_rev(p):
     return rev_start, rev_end.next
 
 
-p = init(10)
-print_list(p)
+if __name__ == "__main__":
+    p = init_natural(10)
+    print_list(p)
 
-rv = list_revers(p)
-print_list(rv)
+    rv = list_revers(p)
+    print_list(rv)
 
-rv = rek_list_rev(p)[0]
-print_list(rv)
+    rv = rek_list_rev(p)[0]
+    print_list(rv)

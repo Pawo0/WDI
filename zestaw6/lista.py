@@ -1,3 +1,6 @@
+from random import randrange
+
+
 class Node:
     """basic linked list, only val and next"""
     def __init__(self, val=None, next=None):
@@ -13,11 +16,20 @@ def print_list(p):
     print("END")
 
 
-def init(n=10):
+def init_natural(n=10):
     """Create linked list with natural numbers to n"""
     a = Node(n)
     for i in range(n-1,-1,-1):
         b = Node(i,a)
+        a = b
+    return a
+
+
+def init_rand(n=10,x=1,y=100):
+    """Create linked list with n random numbers i range (x,y)"""
+    a = Node(randrange(x,y))
+    for i in range(n-1,-1,-1):
+        b = Node(randrange(x,y),a)
         a = b
     return a
 
