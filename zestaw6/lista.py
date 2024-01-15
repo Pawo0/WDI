@@ -16,12 +16,12 @@ def print_list(p):
     print("END")
 
 
+# creating linked lists
 def init_natural(n=10):
     """Create linked list with natural numbers to n"""
     a = Node(n)
     for i in range(n-1,-1,-1):
-        b = Node(i,a)
-        a = b
+        a = Node(i,a)
     return a
 
 
@@ -29,8 +29,7 @@ def init_rand(n=10,x=1,y=100):
     """Create linked list with n random numbers i range (x,y)"""
     a = Node(randrange(x,y))
     for i in range(n-1,-1,-1):
-        b = Node(randrange(x,y),a)
-        a = b
+        a = Node(randrange(x,y),a)
     return a
 
 
@@ -39,12 +38,39 @@ def init_number(n):
     n //= 10
     while n != 0:
         digit = n%10
-        b = Node(digit,a)
-        a = b
+        a = Node(digit,a)
         n //= 10
     return a
 
+def linked_to_int(p:Node):
+    p = Node(None,p) if p.val is not None else p # guard
+    res = 0
+    while p.next is not None:
+        digit = p.next.val % 10
+        res = res*10 + digit
+        p = p.next
+    return res
 
+
+def int_to_linked(n:int):
+    s = Node(n%10)
+    n //= 10
+    while n != 0:
+        s = Node(n%10,s)
+        n //= 10
+    return s
+
+
+def tab_to_linked(t:list):
+    n = len(t)
+    s = Node(t[n-1])
+    for i in range(n-2,-1,-1):
+        tmp = Node(t[i],s)
+        s = tmp
+    return s
+
+
+# standard operations
 def add_to_end_list(p,what):
     p = Node(None,p) # guard
     start = p.next
@@ -65,13 +91,30 @@ def remove_element(p,what):
     return start
 
 
-if __name__ == "__main__":
-    c = Node(3)
-    b = Node(2, c)
-    a = Node(1, b)
+# cycles stuff
+def is_cycle(p:Node) -> bool:
+    w = p
+    z = p
+    while w.next is not None and w.next.next is not None:
+        w = w.next.next
+        z = z.next
+        if w == z:
+            return True
+    return False
 
-    print_list(a)
-    a = add_to_end_list(a,5)
-    print_list(a)
-    a = remove_element(a,2)
-    print_list(a)
+
+def print_list_cycle(p,n=20):
+    if is_cycle(p):
+        for i in range(n):
+            print(p.val, end=" -> ")
+            p = p.next
+        print("END")
+    else:
+        print("This is not a cycle")
+        print("-"*10)
+        print_list(p)
+        print("-"*10)
+
+
+if __name__ == "__main__":
+    print("Hello world!")
